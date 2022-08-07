@@ -1,12 +1,10 @@
-package Transaction
-
-import "time"
+package models
 
 type Transaction struct {
-	ID        int       `json:"ID"`
-	Amount    float64   `json:"Amount"`
-	Currency  string    `json:"Currency"`
-	CreatedAt time.Time `json:"CreatedAt"`
+	ID        int     `json:"ID"`
+	Amount    float64 `json:"Amount"`
+	Currency  string  `json:"Currency"`
+	CreatedAt string  `json:"CreatedAt"`
 }
 
 type Transactions []Transaction
@@ -16,18 +14,18 @@ var transactions = Transactions{
 		ID:        1,
 		Amount:    50.47,
 		Currency:  "USD",
-		CreatedAt: time.Now().UTC(),
+		CreatedAt: "2022-07-19T13:02:01.440618Z",
 	},
 	Transaction{
 		ID:        2,
 		Amount:    8000.7865,
 		Currency:  "MXN",
-		CreatedAt: time.Now().UTC(),
+		CreatedAt: "2022-07-19T13:02:01.440618Z",
 	},
 	Transaction{
 		ID:        3,
 		Amount:    60789.674,
 		Currency:  "EGP",
-		CreatedAt: time.Now().UTC(),
+		CreatedAt: "2022-07-19T13:02:01.440618Z",
 	},
 }
