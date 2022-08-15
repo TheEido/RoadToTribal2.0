@@ -1,31 +1,28 @@
 package models
 
-type Transaction struct {
-	ID        int     `json:"ID"`
-	Amount    float64 `json:"Amount"`
-	Currency  string  `json:"Currency"`
-	CreatedAt string  `json:"CreatedAt"`
+import (
+	"github.com/google/uuid"
+	"github.com/jackc/pgtype"
+	"github.com/uptrace/bun"
+)
+
+type TransactionModel struct {
+	bun.BaseModel `bun:"table:transaction"`
+	ID            uuid.UUID        `bun:"id,notnull,pk,type:uuid,default:gen_random_uuid()"`
+	Amount        int64            `bun:"amount,notnull"`
+	Currency      string           `bun:"currency,notnull"`
+	CreatedAt     pgtype.Timestamp `bun:"createdAt,notnull"`
 }
 
-type Transactions []Transaction
+type CreateTransactionRequest struct {
+	Amount    int64            `json:"amount" validate:"notnull,required"`
+	Currency  string           `json:"currency" validate:"notnull,required"`
+	CreatedAt pgtype.Timestamp `json:"createdAt" validate:"notnull,required"`
+}
 
-var transactions = Transactions{
-	Transaction{
-		ID:        1,
-		Amount:    50.47,
-		Currency:  "USD",
-		CreatedAt: "2022-07-19T13:02:01.440618Z",
-	},
-	Transaction{
-		ID:        2,
-		Amount:    8000.7865,
-		Currency:  "MXN",
-		CreatedAt: "2022-07-19T13:02:01.440618Z",
-	},
-	Transaction{
-		ID:        3,
-		Amount:    60789.674,
-		Currency:  "EGP",
-		CreatedAt: "2022-07-19T13:02:01.440618Z",
-	},
+type TransactionDetailsResponse struct {
+	ID        string           `json:"id"`
+	Amount    string           `json:"amount"`
+	Currency  string           `json:"currency"`
+	CreatedAt pgtype.Timestamp `json:"createdAt"`
 }

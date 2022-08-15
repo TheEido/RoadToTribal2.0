@@ -1,0 +1,6 @@
+database:
+  dsn: "postgresql://aeid:CEkFBJYWcY8n63MWrFfJXw@free-tier13.aws-eu-central-1.cockroachlabs.cloud:26257/gochallenge?sslmode=verify-full&options=--cluster%3Dlively-lioness-2790"
+  pool: 2
+
+server:
+  port: 8084
